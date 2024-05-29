@@ -5,6 +5,7 @@ import gLogo from '../assets/gLogo.png';
 import appleLogo from '../assets/appleLogo.png';
 const Login = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [passwordFocused, setPasswordFocused] = useState(false); 
     const languages = [
         { name: 'English', value: 'en' },
         { name: '繁體中文', value: 'zh-TW' },
@@ -24,6 +25,14 @@ const Login = () => {
 
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
+    };
+
+    const handlePasswordFocus = () => {
+        setPasswordFocused(true); 
+    };
+
+    const handlePasswordBlur = () => {
+        setPasswordFocused(false); 
     };
 
     const [showPassword, setShowPassword] = useState(false); 
@@ -98,7 +107,7 @@ const Login = () => {
                         )}
                     </div>
                 </div>
-                <div className=' flex felx-col items-center justify-center p-6 lg:h-full'>
+                <div className=' flex flex-col lg:items-center lg:justify-center p-6 h-full justify-between'>
                     <div>
                     <h2 className='text-2xl font-semibold'>
                     Login to your ClevGuard ID
@@ -114,14 +123,16 @@ const Login = () => {
                     </div>
 
                     <form className='flex flex-col gap-4'>
-                        <input required type="email" name="" id="" className='border rounded w-full h-11 p-2 focus:ring focus:ring-cyan-400 focus:outline-none' placeholder='Email Address' />
+                        <input required type="email" name="" id="" className='border rounded w-full h-11 p-2 focus:ring focus:ring-cyan-400 focus:border-0 focus:outline-none' placeholder='Email Address' />
                         
-                        <div className='flex items-center justify-between border rounded w-full h-11 p-2  focus:border-cyan-400'>
+                        <div className={`flex items-center justify-between border rounded w-full h-11 p-2  ${passwordFocused ? 'password-wrapper-focused' : ''}`}>
                             <input
+                            onFocus={handlePasswordFocus}
+                            onBlur={handlePasswordBlur}
                 required
                 type={showPassword ? "text" : "password"}
               
-                className=' focus:outline-none '
+                className=' focus:outline-none w-full'
                 placeholder='Password'
             />
             <div
@@ -142,6 +153,7 @@ const Login = () => {
                     <p className='py-2 text-center text-gray-500'>Don't have an account? <a href="" className='text-cyan-400 hover:text-cyan-500'>Sign up</a></p>
                    <button className='text-gray-500 py-4 hover:text-cyan-400 hover:underline'>Have an invite code?</button>
                     </div>
+                <p className='lg:hidden text-gray-400 text-center'>Copyright © 2024 ClevGuard.com. All rights reserved.</p>
                 </div>
             </div>
             
