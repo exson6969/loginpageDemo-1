@@ -113,7 +113,7 @@ const Login = () => {
                     Login to your ClevGuard ID
                     </h2>
                     <div className='mt-3 flex gap-4'>
-                    <button className='flex items-center border rounded px-6 py-2 gap-2'><img src={gLogo} alt="google logo" /> Sign in with Google</button>
+                    <button className='flex items-center border rounded px-6 py-2 gap-2'><img src={gLogo} alt="google logo" /> <span className='lg:block hidden'>Sign in with Google</span> </button>
                     <button className='flex border rounded px-4 py-2 gap-2'><img src={appleLogo} alt="apple logo" className='w-6' /></button>
                     </div>
                     <div className='flex w-full items-center'>
