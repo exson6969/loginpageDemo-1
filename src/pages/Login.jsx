@@ -3,9 +3,14 @@ import logo from '../assets/logo.svg';
 import loginImg from '../assets/loginImg.svg';
 import gLogo from '../assets/gLogo.png';
 import appleLogo from '../assets/appleLogo.png';
+import { useNavigate } from 'react-router-dom';
+
 const Login = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [passwordFocused, setPasswordFocused] = useState(false); 
+    const [showPassword, setShowPassword] = useState(false); 
+    const navigate = useNavigate();
+
     const languages = [
         { name: 'English', value: 'en' },
         { name: '繁體中文', value: 'zh-TW' },
@@ -35,10 +40,16 @@ const Login = () => {
         setPasswordFocused(false); 
     };
 
-    const [showPassword, setShowPassword] = useState(false); 
-
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
+    };
+
+    const handleLogin = (e) => {
+        e.preventDefault();
+
+        // Add login logic 
+          
+        navigate('/calllogs'); 
     };
 
     return (
@@ -122,7 +133,7 @@ const Login = () => {
                     <div className='w-full bg-slate-200 h-0.5'></div>
                     </div>
 
-                    <form className='flex flex-col gap-4'>
+                    <form className='flex flex-col gap-4' onSubmit={handleLogin}>
                         <input required type="email" name="" id="" className='border rounded w-full h-11 p-2 focus:ring focus:ring-cyan-400 focus:border-0 focus:outline-none' placeholder='Email Address' />
                         
                         <div className={`flex items-center justify-between border rounded w-full h-11 p-2  ${passwordFocused ? 'password-wrapper-focused' : ''}`}>
